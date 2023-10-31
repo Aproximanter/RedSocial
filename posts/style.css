@@ -1,10 +1,18 @@
+
+body{
+
+    background-color: #2959f7;
+    background: linear-gradient(to left, #0016df, #08bef5);
+    height: 100vh;
+}
+
 .post-list {
     list-style: none;
     padding: 0;
 }
 
 .post {
-    border: 1px solid #ccc;
+    border: none;
     margin: 10px;
     padding: 10px;
 }
@@ -31,3 +39,13 @@
 .post-content {
     margin-left: 20px;
 }
+
+.wrapper{
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(9px);
+    color: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+  }
