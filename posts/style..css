@@ -1,0 +1,33 @@
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+}
+
+.vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upvote, .downvote {
+    background-color: #00c853;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.score {
+    font-size: 24px;
+    margin: 5px 0;
+}
+
+.post-content {
+    margin-left: 20px;
+}
