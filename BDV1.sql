@@ -1,115 +1,99 @@
- 
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
- 
 CREATE TABLE `comentarios` (
   `IdComentario` int NOT NULL,
   `texto` varchar(250) NOT NULL,
   `IdUsuario` int NOT NULL,
   `date` date NOT NULL,
   `IdPost` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
- 
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE `likes` (
   `IdLike` int NOT NULL,
   `IdUser` int NOT NULL,
   `IdPost` int NOT NULL,
   `date` date NOT NULL,
   `IdTypeLike` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
- 
-
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE `post` (
   `IdPost` int NOT NULL,
   `IdUsuario` int NOT NULL,
   `IdTypePost` int NOT NULL,
   `text` varchar(50) NOT NULL,
   `IdPostShared` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
- 
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE `typelike` (
   `IdTypeLike` int NOT NULL,
   `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
- 
-INSERT INTO `typelike` (`IdTypeLike`, `nombre`) VALUES
-(1, 'UpVote'),
-(2, 'DownVote');
-
- 
-
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+INSERT INTO `typelike` (`IdTypeLike`, `nombre`)
+VALUES (1, 'UpVote'),
+  (2, 'DownVote');
 CREATE TABLE `typepost` (
   `IdTypePost` int NOT NULL,
   `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
- 
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE `usuarios` (
   `IdUsuario` int NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Correo` varchar(50) NOT NULL,
   `Matricula` int NOT NULL,
-  `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `password` varchar(50) NOT NULL,
+  `profile_image` VARCHAR(255)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+CREATE TABLE Mensajes (
+    IdMensaje INT AUTO_INCREMENT PRIMARY KEY,
+    IdEmisor INT NOT NULL,
+    IdReceptor INT NOT NULL,
+    MensajeTexto TEXT NOT NULL,
+    Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (IdEmisor) REFERENCES Usuarios(IdUsuario),
+    FOREIGN KEY (IdReceptor) REFERENCES Usuarios(IdUsuario)
+);
 
- 
+CREATE TABLE HistorialChat (
+    IdHistorial INT AUTO_INCREMENT PRIMARY KEY,
+    IdUsuario INT NOT NULL,
+    IdChatPartner INT NOT NULL,
+    FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario),
+    FOREIGN KEY (IdChatPartner) REFERENCES Usuarios(IdUsuario)
+);
+
+
 ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`IdComentario`),
+ADD PRIMARY KEY (`IdComentario`),
   ADD KEY `IdUsuario` (`IdUsuario`),
   ADD KEY `IdPost` (`IdPost`);
- 
 ALTER TABLE `likes`
-  ADD PRIMARY KEY (`IdLike`),
+ADD PRIMARY KEY (`IdLike`),
   ADD KEY `IdPost` (`IdPost`),
   ADD KEY `IdUser` (`IdUser`),
   ADD KEY `IdTypeLike` (`IdTypeLike`);
- 
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`IdPost`),
+ADD PRIMARY KEY (`IdPost`),
   ADD KEY `IdPost` (`IdPost`),
   ADD KEY `IdUsuario` (`IdUsuario`),
   ADD KEY `IdPostShared` (`IdPostShared`);
-
- 
 ALTER TABLE `typelike`
-  ADD PRIMARY KEY (`IdTypeLike`);
- 
+ADD PRIMARY KEY (`IdTypeLike`);
 ALTER TABLE `typepost`
-  ADD PRIMARY KEY (`IdTypePost`);
-
- 
+ADD PRIMARY KEY (`IdTypePost`);
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`IdUsuario`);
- 
+ADD PRIMARY KEY (`IdUsuario`);
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int NOT NULL AUTO_INCREMENT;
-
- 
+MODIFY `IdUsuario` int NOT NULL AUTO_INCREMENT;
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`) ON DELETE CASCADE ON UPDATE CASCADE;
-
- 
+ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPost`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`IdUser`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `likes_ibfk_3` FOREIGN KEY (`IdTypeLike`) REFERENCES `typelike` (`IdTypeLike`) ON DELETE CASCADE ON UPDATE CASCADE;
- 
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`IdPost`) REFERENCES `post` (`IdPostShared`) ON DELETE CASCADE ON UPDATE CASCADE;
- 
 ALTER TABLE `typepost`
-  ADD CONSTRAINT `typepost_ibfk_1` FOREIGN KEY (`IdTypePost`) REFERENCES `post` (`IdPostShared`) ON DELETE CASCADE ON UPDATE CASCADE;
-
- 
+ADD CONSTRAINT `typepost_ibfk_1` FOREIGN KEY (`IdTypePost`) REFERENCES `post` (`IdPostShared`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `comentarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `comentarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
- 
