@@ -1,0 +1,21 @@
+Para felipe, consultas de las paginas::
+
+consulta sql para el registro de alumnos a la base de datos
+
+INSERT INTO alumnos (nombre, matricula, correo, carrera)
+VALUES ('Nombre del Alumno', 'Número de Matrícula', 'correo@example.com', 'Carrera del Alumno');
+
+
+consulta para recuperar el regtistro del login
+SELECT * FROM usuarios
+WHERE correo = 'correo_del_usuario' AND contraseña = 'contraseña_del_usuario';
+
+consulta para gaurdar los mensajes enviados a la base de datos:
+INSERT INTO Mensajes (IdEmisor, IdReceptor, MensajeTexto) VALUES (1, 2, 'Hola, ¿cómo estás?');
+
+para mostrar desde los ultimos 10 ultimos mensajes al ultimo registro
+SELECT * FROM Mensajes
+ORDER BY Fecha DESC
+LIMIT 10;
+
+
