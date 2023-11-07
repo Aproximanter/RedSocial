@@ -10,6 +10,12 @@ CREATE TABLE Users (
     email VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE Posts (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL
+);
+
 CREATE USER 'tc_server'@'localhost' IDENTIFIED BY 'contrasemnia';
 GRANT ALL PRIVILEGES ON BDV2.* TO 'tc_server'@'localhost';
 FLUSH PRIVILEGES;

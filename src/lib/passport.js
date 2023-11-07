@@ -17,9 +17,33 @@ passport.use('local.signup', new LocalStrategy({
     email: email
   };
   newUser.pass = await helpers.encryptPassword(password);
-  const result = await pool.query('INSERT INTO users SET ? ', newUser);
-  newUser.id = result.insertId;
-  return done(null, newUser);
+
+  try {
+    const result = await pool.query('INSERT INTO users SET ? ', newUser);
+    newUser.id = result.insertId;
+    return done(null, newUser);
+  } catch (err) {
+    return done(null, false); //TODO: this isnt redirecting to the failureRedirect option
+  }
+}));
+
+passport.use('local.signin', new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  passReqToCallback: true
+}, async (req, username, password, done) => {
+  const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+  if (rows.length > 0) {
+    const user = rows[0];
+    const validPassword = await helpers.matchPassword(password, user.password)
+    if (validPassword) {
+      done(null, user);
+    } else {
+      done(null, false);
+    }
+  } else {
+    return done(null, false);
+  }
 }));
 
 passport.serializeUser((user, done) => {

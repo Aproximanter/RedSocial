@@ -7,9 +7,11 @@ router.get('/auth', (req, res) => {
   res.render('auth');
 });
 
-router.post('/signin', (req, res) => {
-  console.log(req.body);
-  res.send('sign in');
+router.post('/signin', (req, res, next) => {
+  passport.authenticate('local.signin', {
+    successRedirect: '/profile',
+    failureRedirect: '/posts'
+  })(req, res, next);
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
