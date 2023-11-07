@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../db');
 
 router.get('/', async (req, res) => {
-  const posts = await pool.query('SELECT * FROM posts');
+  const posts = await pool.query('SELECT * FROM posts ORDER BY id DESC');
   res.render('posts', { posts });
 });
 

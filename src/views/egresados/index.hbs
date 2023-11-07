@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egresados</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .custom-header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+        }
+
+        .profile-picture {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="custom-header">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center">
+                        <img src="tu-imagen-de-perfil.jpg" alt="Foto de perfil" class="profile-picture">
+                        <span class="ml-2">Nombre de Usuario</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8">
+                <h1>Bienvenido Egresado, estas son las novedades hoy</h1>
+                <p>Vuelve pronto para mas novedades</p>
+            </div>
+            <div class="col-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">Bolsa de Trabajo</a>
+                    <a href="#" class="list-group-item list-group-item-action">Empresas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <textarea class="form-control" id="postContent" rows="3"
+                                    placeholder="¿Que estas pensando?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Publicar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
