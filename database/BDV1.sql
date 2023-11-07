@@ -41,7 +41,7 @@ CREATE TABLE `usuarios` (
   `Correo` varchar(50) NOT NULL,
   `Matricula` int NOT NULL,
   `password` varchar(50) NOT NULL,
-  `profile_image` VARCHAR(255)
+  `profile_image` VARCHAR(255) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE Mensajes (
     IdMensaje INT AUTO_INCREMENT PRIMARY KEY,
