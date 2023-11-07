@@ -32,9 +32,9 @@ app.use((req, res, next) => {
 
 //routes
 app.use(require('./routes'));
-app.use(require('./routes/auth'));
 app.use(require('./routes/chat'));
-app.use('/link', require('./routes/link'));
+app.use(require('./routes/auth'));
+app.use('/posts', require('./routes/link'));
 
 //public
 app.use(express.static(path.join(__dirname, 'public')));
