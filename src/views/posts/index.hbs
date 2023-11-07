@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Votación de Posts</title>
-    <link rel="stylesheet" href="styles/posts.css">
+    <link rel="stylesheet" href="/styles/posts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body>
-    <div class="wrapper"> 
-    <ul class="post-list">
-        <li class="post">
-            <div class="vote">
 
-              
-             
-            
-            <div class="post-content">
-                <h2>Post 1</h2>
-                <p>Contenido del primer post.</p>
-                <div class="media">
-                    <a href="https://www.example.com/image.jpg" target="_blank">Imagen</a>
-                    <a href="https://www.example.com/video.mp4" target="_blank">Video</a>
-                    <a href="https://www.example.com/document.pdf" download>Documento</a>
+<body>
+    <h1>Posts</h1>
+
+    <button onclick="window.location.href='./posts/add'">Crear post</button>
+
+    <div>
+        <ul class="post-list">
+
+            {{#each posts}}
+            <li class="wrapper">
+                <div class="vote">
+                    <div class="post-content">
+                        <h2>{{title}}</h2>
+                        <p>{{description}}</p>
+                        <div class="media">
+                            <a href="" target="_blank"></a>
+                            <a href="" target="_blank"></a>
+                            <a href="" download></a>
+                        </div>
+                    </div>
+                    <button class="upvote"><i class="fas fa-arrow-up"></i> </button>
+                    <button class="downvote"><i class="fas fa-arrow-down"></i> </button>
+                    <span class="score">0</span>
+                    <div class="button-container">
+                        <button class="edit" onclick="window.location.href='./posts/edit/{{id}}'"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="delete" onclick="window.location.href='./posts/delete/{{id}}'"><i class="fas fa-trash"></i> Eliminar</button>
+                    </div>
                 </div>
-            </div>
-            <button class="upvote"><i class="fas fa-arrow-up"></i> </button>
-            <button class="downvote"><i class="fas fa-arrow-down"></i> </button>
-            
-                           
-                            <span class="score">0</span>
-        </div>
-        </li>
-        <!-- Agrega más elementos <li> para más posts -->
-    </ul>
-</div>
-</div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    </div>
+
     <script src="scripts/posts.js"></script>
 </body>
+
 </html>

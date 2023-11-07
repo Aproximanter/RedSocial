@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Votación de Posts</title>
+    <link rel="stylesheet" href="/styles/addPost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="post-form">
+
+            <h3>{{formTitle}}</h3>
+            <form action="{{formDestination}}" method="POST" id="post-form">
+
+                <input type="text" name="title" id="post-tittle" placeholder="Titulo de tu post" value="{{titleData}}">
+                <textarea name="description" id="post-content" cols="30" rows="10" placeholder="Contenido del post">{{descriptionData}}</textarea>
+                <button id="add-post"> Publicar</button>
+
+            </form>
+
+        </ul>
+
+        <ul class="posts-lists">
+
+
+
+        </ul>
+    </div>
+
+    {{!-- <script src="/scripts/posts.js"></script> --}}
+</body>
+
+</html>
+
+
+
+</div>
