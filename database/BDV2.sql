@@ -5,9 +5,14 @@ USE BDV2;
 CREATE TABLE Users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     control_number VARCHAR(30) NOT NULL UNIQUE,
+    email varchar(255) NOT NULL,
+    fname varchar(255) NOT NULL,
+    lname varchar(255) NOT NULL,
     pass VARCHAR(60) NOT NULL,
-    full_name VARCHAR(100) NOT NULL,
+    --full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL
+    img varchar(255) NOT NULL,
+    status varchar(255) NOT NULL
 );
 
 CREATE TABLE Posts (
@@ -16,6 +21,12 @@ CREATE TABLE Posts (
     description TEXT NOT NULL
 );
 
+CREATE TABLE messages(
+   msg_id int(11) NOT NULL AUTO_INCREMENT;,
+   incoming_msg_id int(255) NOT NULL,
+   outgoing_msg_id int(255) NOT NULL,
+   msg varchar(1000) NOT NULL
+)
 
 
 CREATE USER 'tc_server'@'localhost' IDENTIFIED BY 'contrasemnia';
