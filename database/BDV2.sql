@@ -16,6 +16,8 @@ CREATE TABLE Posts (
     description TEXT NOT NULL
 );
 
+
+
 CREATE USER 'tc_server'@'localhost' IDENTIFIED BY 'contrasemnia';
 GRANT ALL PRIVILEGES ON BDV2.* TO 'tc_server'@'localhost';
 FLUSH PRIVILEGES;

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel principal ComuniTec</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/posts2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="user-info">
+            <img src="/img/perfil.png" alt="UserTest1" class="rounded-circle">
+            <span class="fw-bold">Usuario test 1</span>
+        </div>
+        <div class="tecmunity-logo">
+            <img src="/img/TC .png" alt="Tecmunity Logo" class="logoTec">
+            <span class="fw-bold">ComuniTec</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="post-box mt-4">
+            <div class="user-info">
+                <img src="/img/perfil.png" alt="Tu Nombre de Usuario" class="rounded-circle">
+                <span class="fw-bold" ><font color="black">Usuario test 1</font></span>
+            </div>
+            <form class="post-form d-flex flex-column" id="post-form">
+                <input type="text" id="post-tittle" placeholder="Titulo de tu post">
+                <textarea class="form-control" id="post-content" cols="30" rows="5" placeholder="Cuentanos algo..."></textarea>
+                <button type="submit" class="btn btn-primary mt-2">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="left-panel">
+                    <ul class="menu">
+                        <li>
+                            <img src="/img/home.png" alt="Inicio" class="rounded-image">
+                            <span class="fw-bold">Inicio</span>
+                        </li>
+                        <li>
+                            <img src="/img/chat.png" alt="Chat" class="rounded-image">
+                            <span class="fw-bold">Chat</span>
+                        </li>
+                        <li>
+                            <img src="/img/forum.png" alt="Foro" class="rounded-image">
+                            <span class="fw-bold">Foro</span>
+                        </li>
+                        <li>
+                            <img src="/img/settings.png" alt="Configuración" class="rounded-image">
+                            <span class="fw-bold">Configuración</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="right-panel">
+                    <ul class="element-list">
+                        <li>
+                            <span class="fw-bold">Usuario 1</span>
+                            <img src="/img/user.png" alt="Imagen 1" class="rounded-image">
+                        </li>
+                        <li>
+                            <span class="fw-bold">Usuario 2</span>
+                            <img src="/img/user.png" alt="Imagen 2" class="rounded-image">
+                        </li>
+                        <!-- Puedes agregar más elementos a esta lista -->
+                    </ul>
+                </div>
+                <div class="wrapper-container mt-4">
+                    <div class="wrapper">
+                        <ul class="post-list">
+                            <!-- Los posts se agregarán aquí -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="scripts/posts2.js"></script>
+</body>
+</html>
