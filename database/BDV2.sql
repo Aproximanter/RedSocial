@@ -5,14 +5,9 @@ USE BDV2;
 CREATE TABLE Users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     control_number VARCHAR(30) NOT NULL UNIQUE,
-    email varchar(255) NOT NULL,
-    fname varchar(255) NOT NULL,
-    lname varchar(255) NOT NULL,
     pass VARCHAR(60) NOT NULL,
-    --full_name VARCHAR(100) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL
-    img varchar(255) NOT NULL,
-    status varchar(255) NOT NULL
 );
 
 CREATE TABLE Posts (
