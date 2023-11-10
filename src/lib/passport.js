@@ -16,32 +16,37 @@ passport.use('local.signup', new LocalStrategy({
     full_name: name,
     email: email
   };
-  newUser.pass = await helpers.encryptPassword(password);
+  newUser.password = await helpers.encryptPassword(password);
 
   try {
     const result = await pool.query('INSERT INTO users SET ? ', newUser);
     newUser.id = result.insertId;
     return done(null, newUser);
   } catch (err) {
+    console.log("WARNING: Could not sign up")
     return done(null, false); //TODO: this isnt redirecting to the failureRedirect option
   }
 }));
 
 passport.use('local.signin', new LocalStrategy({
-  usernameField: 'username',
+  usernameField: 'controln',
   passwordField: 'password',
   passReqToCallback: true
-}, async (req, username, password, done) => {
-  const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+}, async (req, controlNumber, password, done) => {
+  const rows = await pool.query('SELECT * FROM users WHERE control_number = ?', [controlNumber]);
   if (rows.length > 0) {
     const user = rows[0];
-    const validPassword = await helpers.matchPassword(password, user.password)
+    const validPassword = await helpers.matchPassword(password, user.password);
     if (validPassword) {
+      console.log(user);
+      console.log("SIGNED IN user.id", user.id);
       done(null, user);
     } else {
+      console.log("WARNING: User used the wrong password");
       done(null, false);
     }
   } else {
+    console.log("WARNING: No such user");
     return done(null, false);
   }
 }));
@@ -51,6 +56,19 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const rows = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+  const rows = await pool.query(`SELECT
+  U.id,
+  U.control_number,
+  U.password,
+  U.full_name,
+  U.email,
+  U.img,
+  U.privilege,
+  U.status,
+  (SELECT COUNT(*) FROM Follows F1 WHERE F1.followerFK = U.id) AS followers,
+  (SELECT COUNT(*) FROM Follows F2 WHERE F2.followedFK = U.id) AS following
+FROM
+  Users U
+WHERE id = ?`, [id]);
   done(null, rows[0]);
 });

@@ -40,7 +40,8 @@ app.use(passport.session());
 
 //global vars
 app.use((req, res, next) => {
-
+  // TODO: user is always undefined, fix
+  app.locals.user = req.user;
   next();
 });
 
@@ -48,7 +49,8 @@ app.use((req, res, next) => {
 app.use(require('./routes'));
 app.use(require('./routes/chat'));
 app.use(require('./routes/auth'));
-app.use('/posts', require('./routes/link'));
+app.use('/profile', require('./routes/profile'));
+app.use('/posts', require('./routes/posts'));
 
 //public
 app.use(express.static(path.join(__dirname, 'public')));
