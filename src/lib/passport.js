@@ -65,8 +65,8 @@ passport.deserializeUser(async (id, done) => {
   U.img,
   U.privilege,
   U.status,
-  (SELECT COUNT(*) FROM Follows F1 WHERE F1.followerFK = U.id) AS followers,
-  (SELECT COUNT(*) FROM Follows F2 WHERE F2.followedFK = U.id) AS following
+  (SELECT COUNT(*) FROM Follows F1 WHERE F1.followerFK = U.id) AS following,
+  (SELECT COUNT(*) FROM Follows F2 WHERE F2.followedFK = U.id) AS followers
 FROM
   Users U
 WHERE id = ?`, [id]);

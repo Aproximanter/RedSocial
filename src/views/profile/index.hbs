@@ -25,7 +25,7 @@
   <!-------------------------------NAvigation Starts------------------>
 
   <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color: #097389ff">
-    <a href="index.html" class="navbar-brand"><img src="/img/TC.png" alt="logo" class="img-fluid" width="80px"
+    <a href="/posts" class="navbar-brand"><img src="/img/TC.png" alt="logo" class="img-fluid" width="80px"
         height="100px" /></a>
 
     <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive">
@@ -84,7 +84,8 @@
           <form action="/profile/update/{{profileUser.id}}" method="POST">
             <div class="mb-3">
               <label for="name" class="form-label">Nombre</label>
-              <input required name="full_name" type="text" class="form-control" id="name" placeholder="Ingresa tu nuevo nombre">
+              <input required name="full_name" type="text" class="form-control" id="name"
+                placeholder="Ingresa tu nuevo nombre">
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Nueva Contraseña</label>
@@ -111,9 +112,9 @@
               </a>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a href="/profile/delete/{{profileUser.id}}">
-                <button type="button" class="btn-sm btn btn-danger btn-sm  me-md-2">Eliminar Cuenta</button>
-              </a>
+              <form action="/profile/delete/{{profileUser.id}}" method="POST">
+                <button type="submit" class="btn-sm btn btn-danger btn-sm  me-md-2">Eliminar Cuenta</button>
+              </form>
             </div>
           </ul>
         </div>
@@ -132,7 +133,22 @@
       <p class="text-light">Numero de control: {{profileUser.control_number}}</p>
       <p class="text-light">Correo: {{profileUser.email}}</p>
       <p class="text-light">ID: {{profileUser.id}}</p>
+      <p class="text-light">Seguidores: {{profileUser.followers}}</p>
+      <p class="text-light">Siguiendo: {{profileUser.following}}</p>
+      
       {{!-- <p class="text-light">Nivel de permisos: {{profileUser.privilege}}</p> --}}
+      {{#if isDifferentUser}}
+      {{#if isFollowed}}
+      <form id="unfollow-form" action="/profile/unfollow/{{profileUser.id}}" method="POST">
+        <button type="submit">Unfollow</button>
+      </form>
+      {{else}}
+      <form id="follow-form" action="/profile/follow/{{profileUser.id}}" method="POST">
+        <button type="submit">Follow</button>
+      </form>
+      {{/if}}
+      {{/if}}
+
     </div>
 
     {{!-- <div class="banner-end d-flex justify-content-center align-items-end">

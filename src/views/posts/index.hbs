@@ -110,15 +110,14 @@
                                 class="rounded-circle mt-n5">
                             <h5 class="card-title">{{user.full_name}}</h5>
                             {{!-- <p class="card-text text-justify mb-2">Descripcion de la persona</p> --}}
-                            {{!-- <ul class="list-unstyled nav justify-content-center">
+                            <ul class="list-unstyled nav justify-content-center">
                                 <a href="#" class="text-dark text-decoration-none">
                                     <li class="nav-item">Seguidores <br> <strong>{{user.followers}}</strong></li>
                                 </a>
                                 <a href="#" class="text-dark text-decoration-none">
                                     <li class="nav-item">Siguiendo <br> <strong>{{user.following}}</strong></li>
                                 </a>
-                            </ul> --}}
-
+                            </ul>
                         </div>
                     </div>
                     {{!-- <div class="card shadow-sm card-left2 mb-4">
@@ -195,10 +194,14 @@
                         {{#each posts as |post|}}
                         <div class="card-body">
                             <div class="media">
+                                <a href="/profile/{{post.userFK}}">
                                 <img src="/img/pfp/{{post.user_pfp}}" alt="img" width="65px" height="65px"
                                     class="rounded-circle mr-3">
+                                </a>
                                 <div class="media-body">
-                                    <h5>{{post.user_name}}</h5>
+                                    <a href="/profile/{{post.userFK}}" style="color: inherit;">
+                                        <h5>{{post.user_name}}</h5>
+                                    </a>
                                     {{#ifEquals post.userFK ../user.id}}
                                     <a href="/posts/delete/{{post.id}}" class="btn btn-danger mr-2">Eliminar Post</a>
                                     {{else}}
