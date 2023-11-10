@@ -1,178 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    />
-    <link rel="stylesheet" href="/styles/posts.css" />
 
-    <!------------------LIght BOx for Gallery-------------->
-    <link rel="stylesheet" href="/styles/posts-lightbox.min.css" />
-    <script type="text/javascript" src="/scripts/posts-lightbox-plus-jquery.min.js"></script>
-    <!------------------LIght BOx for Gallery-------------->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+  <link rel="stylesheet" href="/styles/posts.css" />
+  <script src="/scripts/anti-logo-aktion.js"></script>
+  <script src="//code.tidio.co/ynfcxx7pil0vhqb9bzd0zbcyqpbmxrek.js" async></script>
 
-    <title>Tu perfil</title>
-  </head>
-  <body>
+  <!------------------LIght BOx for Gallery-------------->
+  <link rel="stylesheet" href="/styles/posts-lightbox.min.css" />
+  <script type="text/javascript" src="/scripts/posts-lightbox-plus-jquery.min.js"></script>
+  <!------------------LIght BOx for Gallery-------------->
 
-    
-    <!-------------------------------NAvigation Starts------------------>
+  <title>Tu perfil</title>
+</head>
 
-    <nav
-      class="navbar navbar-expand-md navbar-dark mb-4"
-      style="background-color: #097389ff"
-    >
-      <a href="index.html" class="navbar-brand"
-        ><img
-          src="/img/TC.png"
-          alt="logo"
-          class="img-fluid"
-          width="80px"
-          height="100px"
-      /></a>
+<body>
 
-      <button
-        class="navbar-toggler"
-        data-toggle="collapse"
-        data-target="#responsive"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="responsive">
-        <ul class="navbar-nav mr-auto text-capitalize">
-          <li class="nav-item">
-            <a href="/posts" class="nav-link active">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a href="/profile" class="nav-link">Perfil</a>
-          </li>
-          <li class="nav-item">
+  <!-------------------------------NAvigation Starts------------------>
 
-          <li class="nav-item">
-            <a href="/chat" class="nav-link">Mensajes</a>
-          </li>
-          <a href="#modalview" class="nav-link" data-toggle="modal"
-          >Configuraciones</a >
-      </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link d-md-none">Postear</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link d-md-none">Cerrar Sesion</a>
-          </li>
-        </ul>
+  <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background-color: #097389ff">
+    <a href="index.html" class="navbar-brand"><img src="/img/TC.png" alt="logo" class="img-fluid" width="80px"
+        height="100px" /></a>
 
-        {{!-- <form action="" class="form-inline ml-auto d-none d-md-block">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="Search"
-            class="form-control form-control-sm"
-          />
-        </form>
-        <a
-          href="notification.html"
-          class="text-decoration-none"
-          style="color: #cbe4f2; font-size: 22px"
-          ><i class="far fa-bell ml-3 d-none d-md-block"></i
-        ></a> --}}
-        <img
-          src="/img/pfp/{{user.img}}"
-          alt=""
-          class="rounded-circle ml-3 d-none d-md-block"
-          width="32px"
-          height="32px"
-        />
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#responsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="responsive">
+      <ul class="navbar-nav mr-auto text-capitalize">
+        <li class="nav-item">
+          <a href="/posts" class="nav-link active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="/profile" class="nav-link">Perfil</a>
+        </li>
+        <li class="nav-item">
+
+        <li class="nav-item">
+          <a href="/chat" class="nav-link">Mensajes</a>
+        </li>
+        {{#ifEquals profileUser.id user.id}}
+        <a href="#modalview" class="nav-link" data-toggle="modal">Configuraciones</a>
+        {{else}}
+        {{#ifBigger ../user.privilege ../profileUser.privilege}}
+        <a href="#modalview" class="nav-link" data-toggle="modal">Configuraciones</a>
+        {{/ifBigger}}
+        {{/ifEquals}}
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link d-md-none">Postear</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link d-md-none">Cerrar Sesion</a>
+        </li>
+      </ul>
+
+      {{!-- <form action="" class="form-inline ml-auto d-none d-md-block">
+        <input type="text" name="search" id="search" placeholder="Search" class="form-control form-control-sm" />
+      </form>
+      <a href="notification.html" class="text-decoration-none" style="color: #cbe4f2; font-size: 22px"><i
+          class="far fa-bell ml-3 d-none d-md-block"></i></a> --}}
+      <img src="/img/pfp/{{user.img}}" alt="" class="rounded-circle ml-3 d-none d-md-block" width="32px"
+        height="32px" />
+    </div>
+  </nav>
+  <!---------------------------------------------Ends navigation------------------------------>
+
+  <!---------------------------MOdal Section  satrts------------------->
+  <div class="modal fade" id="modalview">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title h4">Edición de perfil</div>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/profile/update/{{profileUser.id}}" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input required name="full_name" type="text" class="form-control" id="name" placeholder="Ingresa tu nuevo nombre">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Nueva Contraseña</label>
+              <input required name="password" type="password" class="form-control" id="password"
+                placeholder="Ingresa tu nueva contraseña">
+            </div>
+            <div class="mb-3">
+              <label for="studentID" class="form-label">Numero de control</label>
+              <input required name="control_number" type="text" class="form-control" id="studentID"
+                placeholder="Ingresa tu nueva matrícula">
+            </div>
+            {{!-- <div class="mb-3">
+              <label for="profilePic" class="form-label">Foto de perfil</label>
+              <input name="profilePic" type="file" class="form-control" id="profilePic">
+            </div> --}}
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+          </form>
+          <ul class="list-unstyled">
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <a href="/logout">
+                <button class="btn btn btn-secondary me-md-2 btn-lg" type="button">Cerrar Sesión</button>
+              </a>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="/profile/delete/{{profileUser.id}}">
+                <button type="button" class="btn-sm btn btn-danger btn-sm  me-md-2">Eliminar Cuenta</button>
+              </a>
+            </div>
+          </ul>
+        </div>
       </div>
-    </nav>
-    <!---------------------------------------------Ends navigation------------------------------>
-
-    <!---------------------------MOdal Section  satrts------------------->
-    <div class="modal fade" id="modalview">
-      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <div class="modal-title h4">Edición de perfil</div>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                  <form>
-                      <div class="mb-3">
-                          <label for="name" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="name" placeholder="Ingresa tu nuevo nombre">
-                      </div>
-                      <div class="mb-3">
-                          <label for="password" class="form-label">Nueva Contraseña</label>
-                          <input type="password" class="form-control" id="password" placeholder="Ingresa tu nueva contraseña">
-                      </div>
-                      <div class="mb-3">
-                          <label for="studentID" class="form-label">Matrícula</label>
-                          <input type="text" class="form-control" id="studentID" placeholder="Ingresa tu nueva matrícula">
-                      </div>
-                      <div class="mb-3">
-                          <label for="profilePic" class="form-label">Foto de perfil</label>
-                          <input type="file" class="form-control" id="profilePic">
-                      </div>
-                      <div class="d-grid gap-2 col-6 mx-auto">
-                          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                      </div>
-                  </form>
-                  <ul class="list-unstyled">
-                      <div class="d-grid gap-2 col-6 mx-auto">
-                          <button class="btn btn btn-secondary me-md-2 btn-lg" type="button">Cerrar Sesión</button>
-                      </div>
-                      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                          <button type="button" class="btn-sm btn btn-danger btn-sm  me-md-2">Eliminar Cuenta</button>
-                      </div>
-                  </ul>
-              </div>
-          </div>
-      </div>
+    </div>
   </div>
-  
+
   <!-------------------------------MOdal Ends---------------------------->
 
-    <!-----------------------------------Banner/img Starts-------------------->
+  <!-----------------------------------Banner/img Starts-------------------->
 
-    <div class="banner">
-      <div
-        class="banner-title d-flex flex-column justify-content-center align-items-center"
-      >
-        <img
-          src="/img/pfp/{{profileUser.img}}"
-          alt="pfp img"
-          class="rounded-circle"
-          width="80px"
-          height="80px"
-        />
-        <h3 class="text-light">{{profileUser.full_name}}</h3>
-        <p class="text-light">Numero de control: {{profileUser.control_number}}</p>
-        <p class="text-light">Correo: {{profileUser.email}}</p>
-        <p class="text-light">ID: {{profileUser.id}}</p>
-        {{!-- <p class="text-light">Nivel de permisos: {{profileUser.privilege}}</p> --}}
-      </div>
-
-      {{!-- <div class="banner-end d-flex justify-content-center align-items-end">
-        <ul class="nav text-light">
-          <li class="nav-item nav-link active">Fotos</li>
-          <li class="nav-item nav-link">Otros</li>
-          <li class="nav-item nav-link">Y otros</li>
-        </ul>
-      </div> --}}
+  <div class="banner">
+    <div class="banner-title d-flex flex-column justify-content-center align-items-center">
+      <img src="/img/pfp/{{profileUser.img}}" alt="pfp img" class="rounded-circle" width="80px" height="80px" />
+      <h3 class="text-light">{{profileUser.full_name}}</h3>
+      <p class="text-light">Numero de control: {{profileUser.control_number}}</p>
+      <p class="text-light">Correo: {{profileUser.email}}</p>
+      <p class="text-light">ID: {{profileUser.id}}</p>
+      {{!-- <p class="text-light">Nivel de permisos: {{profileUser.privilege}}</p> --}}
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
+    {{!-- <div class="banner-end d-flex justify-content-center align-items-end">
+      <ul class="nav text-light">
+        <li class="nav-item nav-link active">Fotos</li>
+        <li class="nav-item nav-link">Otros</li>
+        <li class="nav-item nav-link">Y otros</li>
+      </ul>
+    </div> --}}
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
 </html>
