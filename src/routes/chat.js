@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 
 router.get('/chat', (req, res) => {
-  res.render('chat');
+  res.redirect('chat.html');
 });
 
 module.exports = router;
