@@ -195,13 +195,25 @@
                         <div class="card-body">
                             <div class="media">
                                 <a href="/profile/{{post.userFK}}">
-                                <img src="/img/pfp/{{post.user_pfp}}" alt="img" width="65px" height="65px"
-                                    class="rounded-circle mr-3">
+                                    <img src="/img/pfp/{{post.user_pfp}}" alt="img" width="65px" height="65px"
+                                        class="rounded-circle mr-3">
                                 </a>
                                 <div class="media-body">
+
+
                                     <a href="/profile/{{post.userFK}}" style="color: inherit;">
                                         <h5>{{post.user_name}}</h5>
                                     </a>
+                                    <p class="card-text text-justify">{{post.votes}}</p>
+                                    <form method="POST" action="/posts/upvote/{{post.id}}">
+                                        <button type="submit" class="upvote"><i class="fas fa-arrow-up"></i></button>
+                                    </form>
+
+                                    <form method="POST" action="/posts/downvote/{{post.id}}">
+                                        <button type="submit" class="downvote"><i
+                                                class="fas fa-arrow-down"></i></button>
+                                    </form>
+
                                     {{#ifEquals post.userFK ../user.id}}
                                     <a href="/posts/delete/{{post.id}}" class="btn btn-danger mr-2">Eliminar Post</a>
                                     {{else}}
